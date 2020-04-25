@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New Page</title>
+  <link rel="stylesheet" href="../lib/css/bootstrap.min.css">
+  <style>
+    html {
+      height: 100%;
+      width: 100%;
+    }
+
+    body,
+    main {
+      height: 100%;
+      width: 100%;
+    }
+
+    main {
+      scroll-snap-type: y mandatory;
+      overflow-y: scroll;
+    }
+
+    .center {
+      padding-top: 10%;
+    }
+
+    .page,
+    .page-100 {
+      width: 100vw;
+      height: 100vh;
+      scroll-snap-align: center;
+    }
+  </style>
+</head>
+
+<body class="bg-dark">
+  <main>
+    <div class="container page center">
+      <h1 class="text-white text-center mb-4">New Page</h1>
+      <div class="row">
+        <div class="col-12">
+          <form action="https://google.com/search?" method="GET">
+            <div class="input-group">
+              <input name="q" class="form-control border-secondary py-4" placeholder="Search" type="search" autofocus />
+              <div class="input-group-append">
+                <button class="btn btn-primary" type="submit">Search</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="container center page">
+      <div class="embed-responsive embed-responsive-16by9">
+        <iframe id="random-song" class="embed-responsive-item" src=""
+          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+  </main>
+  <script src="./js/index.js"></script>
+</body>
+
+</html>
