@@ -1,41 +1,44 @@
-const videos = [
-  "https://www.youtube-nocookie.com/embed/Zeb440Chomw",
-  "https://www.youtube-nocookie.com/embed/lYO77zNhWl4",
-  "https://www.youtube-nocookie.com/embed/eN84vAqO9NY",
-  "https://www.youtube-nocookie.com/embed/GLr0usOC2_k",
-  "https://www.youtube-nocookie.com/embed/AU3D8Yfzlxs",
-  "https://www.youtube-nocookie.com/embed/MuMsLcAsdLc",
-  "https://www.youtube-nocookie.com/embed/0_4fziIKwNE",
-  "https://www.youtube-nocookie.com/embed/PY2otJqwmfA",
-  "https://www.youtube-nocookie.com/embed/c7GkZd7T3tk",
-  "https://www.youtube-nocookie.com/embed/kygPUxOs03c",
-  "https://www.youtube-nocookie.com/embed/JH398xAYpZA",
-  "https://www.youtube-nocookie.com/embed/nl71vFvVOvw",
-  "https://www.youtube-nocookie.com/embed/pM3nIOYF2W8",
-  "https://www.youtube-nocookie.com/embed/MzsU_sn2aIE",
-  "https://www.youtube-nocookie.com/embed/UxPEFFHA4xw",
-  "https://www.youtube-nocookie.com/embed/vsARlcGW0jE",
-  "https://www.youtube-nocookie.com/embed/1DpH-icPpl0",
-  "https://www.youtube-nocookie.com/embed/RcS_8-a-sMg",
-  "https://www.youtube-nocookie.com/embed/4NRXx6U8ABQ",
-  "https://www.youtube-nocookie.com/embed/dqRZDebPIGs",
-  "https://www.youtube-nocookie.com/embed/u6lihZAcy4s",
-  "https://www.youtube-nocookie.com/embed/CE-Iy24NOTY",
-  "https://www.youtube-nocookie.com/embed/ygTZZpVkmKg",
-  "https://www.youtube-nocookie.com/embed/iv1_FOdJ5s0",
-  "https://www.youtube-nocookie.com/embed/EjlLdjzE7dg"
-];
+const DEFAULT_TYPING_DELAY = 400;
 
-function page2() {
-  const iframe = document.querySelector('#random-song');
-  const randomNumber = Math.floor(Math.random() * videos.length);
-  const randomVideo = videos[randomNumber];
-  console.log(iframe);
-  iframe.src = `${randomVideo}`;
+const sleep = ms => {
+  return new Promise(res => {
+    setInterval(() => {
+      res();
+    }, ms);
+  })
 }
 
-function onLoad() {
-  page2();
+const createElement = ({
+  tag,
+  attrs = [],
+}) => {
+  const element = document.createElement(tag);
+  for (let [key, value] of attrs) {
+    element.setAttribute(key, value);
+  }
+  return element;
+};
+
+const rem = px => px / 16;
+
+async function typing({
+  element,
+  text,
+  delay,
+}) {
+  const sleepDelay = Number(delay);
+  for (let i = 0; i < text.length; i++) {
+    if (text[i] === ' ') continue;
+    element.innerText = [...text].splice(0, i+1).join('');
+    await sleep(sleepDelay);
+  }
 }
 
-window.addEventListener('load', onLoad);
+const typingElements = [...document.querySelectorAll('[data-typing]')];
+for (let el of typingElements) {
+  typing({
+    element: el,
+    text: el.dataset.typing,
+    delay: el.dataset.typingDelay || DEFAULT_TYPING_DELAY,
+  });
+}
