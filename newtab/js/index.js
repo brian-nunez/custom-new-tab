@@ -1,26 +1,5 @@
 const DEFAULT_TYPING_DELAY = 400;
 
-const sleep = ms => {
-  return new Promise(res => {
-    setInterval(() => {
-      res();
-    }, ms);
-  })
-}
-
-const createElement = ({
-  tag,
-  attrs = [],
-}) => {
-  const element = document.createElement(tag);
-  for (let [key, value] of attrs) {
-    element.setAttribute(key, value);
-  }
-  return element;
-};
-
-const rem = px => px / 16;
-
 async function typing({
   element,
   text,

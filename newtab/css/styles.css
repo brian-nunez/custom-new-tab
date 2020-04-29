@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box !important;
+}
+
 html {
   height: 100%;
   width: 100%;
@@ -16,11 +20,12 @@ main {
 
 #header {
   margin: 0 auto;
-  width: 11rem;
+  width: 20rem;
 }
 
 .center {
   padding-top: 10%;
+  box-sizing: border-box !important;
 }
 
 .page,
@@ -28,6 +33,7 @@ main {
   width: 100vw;
   height: 100vh;
   scroll-snap-align: center;
+  box-sizing: border-box !important;
 }
 
 @keyframes blink {
@@ -40,4 +46,28 @@ main {
   margin-left: 0.25rem;
   border-left: 1px solid white;
   animation: blink 1s linear infinite;
+}
+
+.page > *:first-child {
+  margin-top: 15rem;
+}
+
+#spotify {
+  box-sizing: border-box !important;
+}
+
+.text-outline-white {
+  text-shadow:
+    0.125rem 0.125rem #fff,
+    -0.125rem 0.125rem #fff,
+    0.125rem -0.125rem #fff,
+    -0.125rem -0.125rem #fff;
+}
+
+.text-outline-black {
+  text-shadow:
+    0.125rem 0.125rem #000,
+    -0.125rem 0.125rem #000,
+    0.125rem -0.125rem #000,
+    -0.125rem -0.125rem #000;
 }
